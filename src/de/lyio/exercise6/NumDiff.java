@@ -43,10 +43,24 @@ public class NumDiff {
         System.out.println(extrapolate(h4_1, h4_2, 4.0, 0.1));
     }
 
+    /**
+     * numerical differentiation of f at x with stepping h (error proportional to h^2)
+     * @param f the function to differentiate
+     * @param x the place where to differentiate
+     * @param h the stepping
+     * @return
+     */
     public double h2(Function f, double x, double h) {
         return (f.f(x + h) - f.f(x-h))/(2*h);
     }
 
+    /**
+     * numerical differentiation of f at x with stepping h (error proportional to h^4)
+     * @param f the function to differentiate
+     * @param x the place where to differentiate
+     * @param h the stepping
+     * @return
+     */
     public double h4(Function f, double x, double h) {
         return (f.f(x - 2*h) - 8*f.f(x-h) + 8*f.f(x + h) - f.f(x + 2*h))/(12*h);
     }
@@ -54,8 +68,6 @@ public class NumDiff {
     public static double extrapolate(double x1, double x2, double alpha, double beta) {
         return (x2 - pow(beta, alpha) * x1) / (1 - pow(beta, alpha));
     }
-
-
 
     public static double extrapolateRichardson(double ug, double uu, int p, double h) {
         return ug + ((uu - ug) /(1 - pow(h, p)));
